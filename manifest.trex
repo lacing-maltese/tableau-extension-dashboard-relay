@@ -4,7 +4,7 @@
     <default-locale>en_US</default-locale>
     <name resource-id="name"/>
     <description>Send selected mark data to any webhook endpoint</description>
-    <author name="Webhook Bridge" email="" organization="" website=""/>
+    <author name="Webhook Bridge" email="ben.hart@salesforce.com" organization="Salesforce" website="https://git.soma.salesforce.com/ben-hart/tableau-webook-bridge"/>
     <min-api-version>1.7</min-api-version>
     <source-location>
       <url>https://git.soma.salesforce.com/pages/ben-hart/tableau-webook-bridge/index.html</url>
@@ -13,7 +13,7 @@
   </dashboard-extension>
   <resources>
     <resource id="name">
-      <string locale="en_US">Webhook Bridge</string>
+      <string locale="en_US" value="Webhook Bridge"/>
     </resource>
   </resources>
 </manifest>
