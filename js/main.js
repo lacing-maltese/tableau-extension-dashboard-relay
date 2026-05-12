@@ -51,15 +51,12 @@
     setStatus('Sending...', '');
 
     try {
-      const response = await fetch(config.webhookUrl, {
+      await fetch(config.webhookUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify(payload),
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
 
       setStatus(`Sent ${marks.length} mark${marks.length !== 1 ? 's' : ''} ✓`, 'success');
     } catch (err) {
