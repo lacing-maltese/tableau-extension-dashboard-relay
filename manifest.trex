@@ -9,9 +9,10 @@
     <source-location>
       <url>https://git.soma.salesforce.com/pages/ben-hart/tableau-webook-bridge/index.html</url>
     </source-location>
-    <icon>iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==</icon>
   </dashboard-extension>
   <resources>
-    <resource id="name">Webhook Bridge</resource>
+    <resource id="name">
+      <text locale="en_US">Webhook Bridge</text>
+    </resource>
   </resources>
 </manifest>
