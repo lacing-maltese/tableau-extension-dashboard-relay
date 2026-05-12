@@ -88,6 +88,16 @@ The extension uses the [Tableau Extensions API](https://tableau.github.io/extens
 - `no-cors` fetch mode means the extension cannot confirm whether the webhook accepted the request — the button shows "Sent" if the request was dispatched, regardless of server response.
 - Empty selections are silently ignored — clicking the button with no marks selected does nothing.
 
+### Security considerations
+
+This extension is suitable for demos, prototypes, and internal use cases where Tableau site access controls are the primary security boundary. For production use with consequential actions, be aware of the following:
+
+- **Webhook URL exposure** — the configured webhook URL is stored in `tableau.extensions.settings`, which is persisted in the workbook. Anyone who can download the workbook can extract it. Treat webhook URLs as credentials and scope Tableau workbook permissions accordingly.
+- **No payload signing** — the webhook receiver cannot verify that requests originated from your Tableau dashboard. Platforms like Zapier and Make support HMAC signature verification; this extension does not currently implement it.
+- **No request authentication** — any dashboard viewer with access to the workbook can trigger the webhook. Access is gated entirely by Tableau's workbook permissions.
+
+For higher-trust scenarios, the recommended path is a backend proxy that holds the real webhook URL and credentials server-side, signs outbound requests, and validates that calls are coming from a legitimate source — removing all sensitive configuration from the browser entirely.
+
 ## Files
 
 ```
