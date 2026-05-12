@@ -122,7 +122,7 @@
 
     if (!cfg || !cfg.webhookUrl || !cfg.worksheet) {
       showState('not-configured');
-      openConfig();
+      document.getElementById('configure-btn').addEventListener('click', openConfig);
       return;
     }
 
