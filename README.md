@@ -22,11 +22,9 @@ Dashboard authors configure a webhook URL and map Tableau field names to clean J
 
 ## Why this exists
 
-Tableau has a native Salesforce Flow action, but it requires a connected Salesforce org. That's the right answer for customers fully on the Salesforce platform — but it leaves out everyone running MuleSoft, Zapier, Make, Power Automate, n8n, or any other automation tool.
+Tableau already supports triggering Salesforce Flows from dashboard mark selections — a powerful capability for customers on the Salesforce platform. Webhook Bridge extends that same pattern to the broader automation ecosystem: Zapier, Make, Power Automate, n8n, MuleSoft, or any endpoint that accepts an HTTP POST.
 
-Webhook Bridge is what the native Flow action would look like if it weren't Salesforce-specific. Same concept — select data, trigger a workflow — but platform-agnostic. Any endpoint that accepts an HTTP POST works.
-
-The broader point is that Tableau becomes a viable trigger layer for operational workflows, not just an observation tool. The dashboard is the interface for acting on data, not just analyzing it — and that shouldn't require a Salesforce org to pull off.
+The result is that any Tableau customer, regardless of their automation stack, can turn a dashboard into a trigger for operational workflows. The dashboard stops being a place to observe data and becomes a place to act on it — without leaving Tableau.
 
 ## Deploy in 10 minutes
 
