@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webhook Bridge</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="panel">
+  <div id="app">
+    <div id="not-configured" class="state hidden">
+      <p class="hint">Not configured. Right-click the extension zone to configure.</p>
+    </div>
+
+    <div id="ready" class="state hidden">
+      <button id="trigger-btn" class="trigger-btn">
+        <span id="btn-label">Send to Webhook</span>
+      </button>
+      <p id="status" class="status"></p>
+    </div>
+
+    <div id="loading" class="state">
+      <p class="hint">Initializing...</p>
+    </div>
+  </div>
+
+  <script src="https://extensionsgallery.tableau.com/resources/js/tableau-extensions-1.latest.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

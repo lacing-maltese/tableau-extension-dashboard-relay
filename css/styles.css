@@ -1,0 +1,206 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  color: #1a1a1a;
+  background: #fff;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ── Panel (index.html) ── */
+
+body.panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 12px;
+}
+
+.trigger-btn {
+  width: 100%;
+  padding: 10px 16px;
+  background: #1a73e8;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.trigger-btn:hover:not(:disabled) {
+  background: #1558b0;
+}
+
+.trigger-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.status {
+  margin-top: 8px;
+  font-size: 12px;
+  text-align: center;
+  min-height: 16px;
+}
+
+.status.success { color: #1e7e34; }
+.status.error   { color: #c0392b; }
+
+/* ── Config dialog (config.html) ── */
+
+body.config {
+  padding: 0;
+  overflow-y: auto;
+}
+
+.config-container {
+  padding: 24px;
+  max-width: 520px;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.config-section {
+  margin-bottom: 20px;
+}
+
+.config-section label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.section-header label {
+  margin-bottom: 0;
+}
+
+input[type="url"],
+input[type="text"],
+select {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #1a1a1a;
+  background: #fff;
+  appearance: none;
+}
+
+input[type="url"]:focus,
+input[type="text"]:focus,
+select:focus {
+  outline: none;
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 2px rgba(26,115,232,0.2);
+}
+
+.hint {
+  font-size: 11px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* ── Mapping table ── */
+
+.mapping-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.mapping-table th {
+  text-align: left;
+  font-weight: 500;
+  padding: 5px 6px;
+  border-bottom: 1px solid #ddd;
+  color: #444;
+}
+
+.mapping-table td {
+  padding: 4px 6px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+
+.col-include { width: 44px; text-align: center; }
+.col-tableau { width: 40%; color: #444; }
+.col-key     { }
+
+.mapping-table input[type="text"] {
+  padding: 4px 6px;
+  font-size: 12px;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+}
+
+.mapping-table input[type="checkbox"] {
+  cursor: pointer;
+}
+
+/* ── Buttons ── */
+
+.primary-btn {
+  padding: 8px 18px;
+  background: #1a73e8;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.primary-btn:hover { background: #1558b0; }
+
+.secondary-btn {
+  padding: 7px 14px;
+  background: #fff;
+  color: #1a73e8;
+  border: 1px solid #1a73e8;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.secondary-btn:hover { background: #f0f5ff; }
+
+.config-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+/* ── Error ── */
+
+.error {
+  color: #c0392b;
+  font-size: 12px;
+  margin-top: 12px;
+}

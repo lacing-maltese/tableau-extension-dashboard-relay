@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webhook Bridge — Configure</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="config">
+  <div class="config-container">
+    <h2>Webhook Bridge</h2>
+
+    <!-- Step 1: Worksheet -->
+    <section class="config-section">
+      <label for="worksheet-select">Worksheet</label>
+      <select id="worksheet-select">
+        <option value="">— select a worksheet —</option>
+      </select>
+      <p class="hint">The worksheet whose selected marks will be sent.</p>
+    </section>
+
+    <!-- Step 2: Webhook -->
+    <section class="config-section">
+      <label for="webhook-url">Webhook URL</label>
+      <input type="url" id="webhook-url" placeholder="https://hooks.zapier.com/hooks/catch/..." autocomplete="off">
+      <p class="hint">Supports Zapier, Make, Power Automate, n8n, MuleSoft, or any POST endpoint that accepts JSON.</p>
+    </section>
+
+    <!-- Step 3: Button label -->
+    <section class="config-section">
+      <label for="button-label">Button Label</label>
+      <input type="text" id="button-label" placeholder="Send to Webhook" maxlength="60">
+    </section>
+
+    <!-- Step 4: Field mapping -->
+    <section class="config-section">
+      <div class="section-header">
+        <label>Field Mapping</label>
+        <button id="load-fields-btn" class="secondary-btn">Load Fields from Worksheet</button>
+      </div>
+      <p class="hint">Map Tableau field names to clean JSON keys sent in the payload.</p>
+
+      <div id="fields-loading" class="hidden hint">Loading fields — select a mark on the worksheet first...</div>
+      <div id="fields-empty" class="hidden hint">No fields found. Make sure a mark is selected on the worksheet, then click Load Fields.</div>
+
+      <table id="mapping-table" class="mapping-table hidden">
+        <thead>
+          <tr>
+            <th>Include</th>
+            <th>Tableau Field</th>
+            <th>JSON Key</th>
+          </tr>
+        </thead>
+        <tbody id="mapping-body">
+        </tbody>
+      </table>
+    </section>
+
+    <div class="config-actions">
+      <button id="cancel-btn" class="secondary-btn">Cancel</button>
+      <button id="save-btn" class="primary-btn">Save</button>
+    </div>
+
+    <p id="config-error" class="error hidden"></p>
+  </div>
+
+  <script src="https://extensionsgallery.tableau.com/resources/js/tableau-extensions-1.latest.min.js"></script>
+  <script src="js/config.js"></script>
+</body>
+</html>
