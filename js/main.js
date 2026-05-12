@@ -122,6 +122,7 @@
 
     if (!cfg || !cfg.webhookUrl || !cfg.worksheet) {
       showState('not-configured');
+      openConfig();
       return;
     }
 
