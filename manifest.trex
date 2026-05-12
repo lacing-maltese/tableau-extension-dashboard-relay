@@ -7,7 +7,7 @@
     <author name="Webhook Bridge" email="" organization="" website=""/>
     <min-api-version>1.7</min-api-version>
     <source-location>
-      <url>REPLACE_WITH_YOUR_HOSTED_URL/index.html</url>
+      <url>https://git.soma.salesforce.com/pages/ben-hart/tableau-webook-bridge/index.html</url>
     </source-location>
     <icon>iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==</icon>
   </dashboard-extension>
