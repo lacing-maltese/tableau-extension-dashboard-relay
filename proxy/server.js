@@ -13,22 +13,20 @@ app.use((req, res, next) => {
   next();
 });
 
-// Config store — in production, move this to environment variables or a secrets manager.
-// Each entry maps a config_id to a webhook destination and HMAC secret.
+// Config is loaded from the ROUTES environment variable — a JSON object mapping
+// config_id → { destination, secret }. Set this in your hosting platform's
+// environment variables, never in code.
 //
-// To add a new route:
-//   1. Add an entry here with a unique id, the real webhook URL, and a secret
-//   2. Configure the extension with your proxy URL and this config_id
-//   3. Set the same secret in your webhook receiver to verify signatures
+// Example value for ROUTES:
+// {"test":{"destination":"https://webhook.site/...","secret":"your-secret"}}
 //
-// Example for Zapier: paste the Zapier webhook URL as `destination`.
-// Example for MuleSoft: paste the Mule HTTP listener URL as `destination`.
-const CONFIG = {
-  // 'my-config-id': {
-  //   destination: 'https://hooks.zapier.com/hooks/catch/...',
-  //   secret: 'your-hmac-secret-here',
-  // },
-};
+// To add a new route, add a new key to the ROUTES object and redeploy.
+let CONFIG = {};
+try {
+  CONFIG = JSON.parse(process.env.ROUTES || '{}');
+} catch {
+  console.error('Failed to parse ROUTES env var — check that it is valid JSON');
+}
 
 function sign(secret, body) {
   return crypto
