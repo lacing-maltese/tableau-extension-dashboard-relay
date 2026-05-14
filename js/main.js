@@ -169,8 +169,7 @@
   });
 
   function openConfig() {
-    const selfUrl = tableau.extensions.info.sourceLocation.url;
-    const url = selfUrl.replace('index.html', 'config.html');
+    const url = 'https://bhartsf.github.io/tableau-webook-bridge/config.html';
     tableau.extensions.ui.displayDialogAsync(url, '', { height: 720, width: 520 })
       .then(() => {
         const cfg = loadConfig();
