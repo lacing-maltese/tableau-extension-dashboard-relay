@@ -85,18 +85,20 @@ The extension uses the [Tableau Extensions API](https://tableau.github.io/extens
 ## Limitations
 
 - Values are sent as formatted strings (e.g. `"12,873"` not `12873`) — Tableau's Extensions API returns formatted values from mark selections. Type coercion can be handled downstream in your automation platform.
-- `no-cors` fetch mode means the extension cannot confirm whether the webhook accepted the request — the button shows "Sent" if the request was dispatched, regardless of server response.
+- `no-cors` fetch mode means the extension cannot confirm whether the webhook accepted the request — the button shows "Sent" if the request was dispatched, regardless of server response. This limitation does not apply when using the proxy, which returns a real HTTP status.
 - Empty selections are silently ignored — clicking the button with no marks selected does nothing.
+- `meta.triggered_by` will always be `"unknown"` on Tableau Cloud — the Extensions API does not expose the current user's identity in cloud deployments. The field is populated correctly on Tableau Server (on-premise).
 
 ### Security considerations
 
 This extension is suitable for demos, prototypes, and internal use cases where Tableau site access controls are the primary security boundary. For production use with consequential actions, be aware of the following:
 
+**Direct webhook mode (no proxy):**
 - **Webhook URL exposure** — the configured webhook URL is stored in `tableau.extensions.settings`, which is persisted in the workbook. Anyone who can download the workbook can extract it. Treat webhook URLs as credentials and scope Tableau workbook permissions accordingly.
-- **No payload signing** — the webhook receiver cannot verify that requests originated from your Tableau dashboard. Platforms like Zapier and Make support HMAC signature verification; this extension does not currently implement it.
+- **No payload signing** — the webhook receiver cannot verify that requests originated from your Tableau dashboard.
 - **No request authentication** — any dashboard viewer with access to the workbook can trigger the webhook. Access is gated entirely by Tableau's workbook permissions.
 
-For higher-trust scenarios, the recommended path is a backend proxy that holds the real webhook URL and credentials server-side, signs outbound requests, and validates that calls are coming from a legitimate source — removing all sensitive configuration from the browser entirely.
+**Proxy mode** resolves the first two issues — the real webhook URL never leaves the proxy server, and every request is signed with HMAC-SHA256. The third point (per-user authorization) remains gated by Tableau's workbook permissions in both modes.
 
 ## Files
 
