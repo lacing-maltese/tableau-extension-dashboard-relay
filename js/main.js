@@ -147,10 +147,17 @@
 
   tableau.extensions.initializeAsync({ configure: openConfig }).then(() => {
     const cfg = loadConfig();
+    const isAuthor = tableau.extensions.environment.mode === 'authoring';
 
-    if (!cfg || !cfg.webhookUrl || !cfg.worksheet) {
+    if (!cfg || !cfg.webhookUrl && !cfg.proxyUrl || !cfg.worksheet) {
       showState('not-configured');
-      document.getElementById('configure-btn').addEventListener('click', openConfig);
+      if (isAuthor) {
+        document.getElementById('configure-btn').addEventListener('click', openConfig);
+      } else {
+        document.getElementById('configure-btn').style.display = 'none';
+        document.querySelector('#not-configured .hint').textContent =
+          'This extension has not been configured. Contact the dashboard author.';
+      }
       return;
     }
 
