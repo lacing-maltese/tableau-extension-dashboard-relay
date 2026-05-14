@@ -32,7 +32,14 @@
       <input type="text" id="button-label" placeholder="Send to Webhook" maxlength="60">
     </section>
 
-    <!-- Step 4: Field mapping -->
+    <!-- Step 4: Agent instructions -->
+    <section class="config-section">
+      <label for="agent-instructions">Agent Instructions <span class="optional">(optional)</span></label>
+      <textarea id="agent-instructions" rows="4" placeholder="Describe what should happen with the selected data. Leave blank for a standard webhook trigger.&#10;&#10;Example: Research each selected customer's recent activity and draft a personalized outreach email."></textarea>
+      <p class="hint">When present, this is included in the payload as <code>instructions</code> — useful for AI agents that decide what action to take based on your description.</p>
+    </section>
+
+    <!-- Step 5: Field mapping -->
     <section class="config-section">
       <div class="section-header">
         <label>Field Mapping</label>

@@ -110,6 +110,38 @@ select {
   appearance: none;
 }
 
+textarea {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #1a1a1a;
+  background: #fff;
+  resize: vertical;
+  font-family: inherit;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 2px rgba(26,115,232,0.2);
+}
+
+.optional {
+  font-weight: 400;
+  color: #888;
+  font-size: 11px;
+}
+
+code {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 11px;
+  background: #f5f5f5;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
 input[type="url"]:focus,
 input[type="text"]:focus,
 select:focus {

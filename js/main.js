@@ -27,7 +27,7 @@
   function buildPayload(marks) {
     const mappings = config.mappings.filter(m => m.include);
 
-    return {
+    const payload = {
       marks: marks.map(mark => {
         const obj = {};
         mappings.forEach(({ tableau_field, json_key }) => {
@@ -41,6 +41,12 @@
         timestamp: new Date().toISOString(),
       }
     };
+
+    if (config.agentInstructions) {
+      payload.instructions = config.agentInstructions;
+    }
+
+    return payload;
   }
 
   async function sendWebhook(marks) {
@@ -140,7 +146,7 @@
 
   function openConfig() {
     const url = `${window.location.origin}${window.location.pathname.replace('index.html', 'config.html')}`;
-    tableau.extensions.ui.displayDialogAsync(url, '', { height: 600, width: 520 })
+    tableau.extensions.ui.displayDialogAsync(url, '', { height: 720, width: 520 })
       .then(() => {
         const cfg = loadConfig();
         if (cfg) {
