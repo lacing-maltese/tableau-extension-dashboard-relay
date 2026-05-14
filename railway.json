@@ -2,10 +2,10 @@
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "cd proxy && npm install"
+    "buildCommand": "npm install --prefix proxy"
   },
   "deploy": {
-    "startCommand": "cd proxy && node server.js",
+    "startCommand": "node proxy/server.js",
     "healthcheckPath": "/health"
   }
 }
