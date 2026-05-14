@@ -18,7 +18,9 @@
 
   function getCurrentUser() {
     try {
-      return tableau.extensions.environment.context.currentUser.displayName || 'unknown';
+      return tableau.extensions.environment.currentUser.displayName
+        || tableau.extensions.environment.currentUser.username
+        || 'unknown';
     } catch {
       return 'unknown';
     }
