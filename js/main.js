@@ -16,6 +16,14 @@
     el.className = 'status ' + (type || '');
   }
 
+  function getCurrentUser() {
+    try {
+      return tableau.extensions.environment.context.currentUser.displayName || 'unknown';
+    } catch {
+      return 'unknown';
+    }
+  }
+
   function cleanFieldName(raw) {
     // Strip Tableau decorators: [Field Name], ATTR(x), SUM(x), etc.
     return raw
@@ -38,7 +46,9 @@
       }),
       meta: {
         worksheet: config.worksheet,
+        triggered_by: getCurrentUser(),
         timestamp: new Date().toISOString(),
+        ...(config.configId ? { config_id: config.configId } : {}),
       }
     };
 
@@ -52,17 +62,31 @@
   async function sendWebhook(marks) {
     const payload = buildPayload(marks);
     const btn = document.getElementById('trigger-btn');
+    const usingProxy = !!config.proxyUrl;
 
     btn.disabled = true;
     setStatus('Sending...', '');
 
     try {
-      await fetch(config.webhookUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify(payload),
-      });
+      const url = usingProxy ? config.proxyUrl : config.webhookUrl;
+      const fetchOptions = usingProxy
+        ? {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          }
+        : {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain' },
+            body: JSON.stringify(payload),
+          };
+
+      const response = await fetch(url, fetchOptions);
+
+      if (usingProxy && !response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
 
       setStatus(`Sent ${marks.length} mark${marks.length !== 1 ? 's' : ''} ✓`, 'success');
     } catch (err) {

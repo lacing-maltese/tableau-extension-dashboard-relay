@@ -26,7 +26,23 @@
       <p class="hint">Supports Zapier, Make, Power Automate, n8n, MuleSoft, or any POST endpoint that accepts JSON.</p>
     </section>
 
-    <!-- Step 3: Button label -->
+    <!-- Step 3: Proxy (optional) -->
+    <section class="config-section">
+      <label>Proxy <span class="optional">(optional — recommended for production)</span></label>
+      <div class="proxy-fields">
+        <div>
+          <label for="proxy-url" class="sub-label">Proxy URL</label>
+          <input type="url" id="proxy-url" placeholder="https://your-proxy.example.com/trigger" autocomplete="off">
+        </div>
+        <div>
+          <label for="config-id" class="sub-label">Config ID</label>
+          <input type="text" id="config-id" placeholder="e.g. sales-dashboard-crm-update" autocomplete="off">
+        </div>
+      </div>
+      <p class="hint">When set, requests are routed through your proxy instead of directly to the webhook URL. The proxy holds the real destination URL and signs outbound requests. <a href="https://github.com/bhartSF/tableau-webook-bridge#proxy" target="_blank">Learn more.</a></p>
+    </section>
+
+    <!-- Step 4: Button label -->
     <section class="config-section">
       <label for="button-label">Button Label</label>
       <input type="text" id="button-label" placeholder="Send to Webhook" maxlength="60">

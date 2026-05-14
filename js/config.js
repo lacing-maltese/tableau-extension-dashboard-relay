@@ -94,6 +94,8 @@
     if (existing) {
       document.getElementById('worksheet-select').value = existing.worksheet || '';
       document.getElementById('webhook-url').value = existing.webhookUrl || '';
+      document.getElementById('proxy-url').value = existing.proxyUrl || '';
+      document.getElementById('config-id').value = existing.configId || '';
       document.getElementById('button-label').value = existing.buttonLabel || '';
       document.getElementById('agent-instructions').value = existing.agentInstructions || '';
 
@@ -140,13 +142,19 @@
   document.getElementById('save-btn').addEventListener('click', async () => {
     const worksheet = document.getElementById('worksheet-select').value;
     const webhookUrl = document.getElementById('webhook-url').value.trim();
+    const proxyUrl = document.getElementById('proxy-url').value.trim();
+    const configId = document.getElementById('config-id').value.trim();
     const buttonLabel = document.getElementById('button-label').value.trim();
     const agentInstructions = document.getElementById('agent-instructions').value.trim();
 
     if (!worksheet) { showError('Select a worksheet.'); return; }
-    if (!webhookUrl) { showError('Enter a webhook URL.'); return; }
-    if (!webhookUrl.startsWith('https://') && !webhookUrl.startsWith('http://')) {
+    if (!webhookUrl && !proxyUrl) { showError('Enter a webhook URL or proxy URL.'); return; }
+    if (webhookUrl && !webhookUrl.startsWith('https://') && !webhookUrl.startsWith('http://')) {
       showError('Webhook URL must start with http:// or https://');
+      return;
+    }
+    if (proxyUrl && !proxyUrl.startsWith('https://') && !proxyUrl.startsWith('http://')) {
+      showError('Proxy URL must start with http:// or https://');
       return;
     }
 
@@ -154,7 +162,7 @@
       ? collectMappings(loadedFieldNames)
       : [];
 
-    const cfg = { worksheet, webhookUrl, buttonLabel, agentInstructions, mappings };
+    const cfg = { worksheet, webhookUrl, proxyUrl, configId, buttonLabel, agentInstructions, mappings };
     tableau.extensions.settings.set(SETTINGS_KEY, JSON.stringify(cfg));
 
     try {
