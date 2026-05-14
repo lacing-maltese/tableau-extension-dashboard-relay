@@ -18,10 +18,11 @@
 
   function getCurrentUser() {
     try {
-      return tableau.extensions.environment.currentUser.displayName
-        || tableau.extensions.environment.currentUser.username
-        || 'unknown';
-    } catch {
+      const u = tableau.extensions.environment.currentUser;
+      console.log('currentUser:', JSON.stringify(u));
+      return u.displayName || u.username || 'unknown';
+    } catch (e) {
+      console.log('currentUser error:', e.message);
       return 'unknown';
     }
   }
