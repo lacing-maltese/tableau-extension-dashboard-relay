@@ -169,7 +169,8 @@
   });
 
   function openConfig() {
-    const url = `${window.location.origin}${window.location.pathname.replace('index.html', 'config.html')}`;
+    const selfUrl = tableau.extensions.info.sourceLocation.url;
+    const url = selfUrl.replace('index.html', 'config.html');
     tableau.extensions.ui.displayDialogAsync(url, '', { height: 720, width: 520 })
       .then(() => {
         const cfg = loadConfig();
