@@ -1,7 +1,7 @@
 {
-  "name": "webhook-bridge-proxy",
+  "name": "dashboard-relay-proxy",
   "version": "1.0.0",
-  "description": "Secure proxy for Webhook Bridge Tableau extension",
+  "description": "Secure proxy for Dashboard Relay Tableau extension",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

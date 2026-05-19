@@ -177,7 +177,7 @@
   });
 
   function openConfig() {
-    const url = 'https://bhartsf.github.io/tableau-webook-bridge/config.html';
+    const url = 'https://bhartsf.github.io/tableau-extension-dashboard-relay/config.html';
     tableau.extensions.ui.displayDialogAsync(url, '', { height: 720, width: 520 })
       .then(() => {
         const cfg = loadConfig();

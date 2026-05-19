@@ -1,4 +1,4 @@
-# Webhook Bridge
+# Dashboard Relay
 
 A Tableau dashboard extension that lets users select marks and trigger any automation platform — Zapier, Make, Power Automate, n8n, MuleSoft, or any webhook endpoint — without leaving the dashboard.
 
@@ -27,7 +27,7 @@ Dashboard authors configure a webhook URL, field mappings, and an optional butto
 
 ## Why this exists
 
-Tableau already supports triggering Salesforce Flows from dashboard mark selections — a powerful capability for customers on the Salesforce platform. Webhook Bridge extends that same pattern to the broader automation ecosystem: Zapier, Make, Power Automate, n8n, MuleSoft, or any endpoint that accepts an HTTP POST.
+Tableau already supports triggering Salesforce Flows from dashboard mark selections — a powerful capability for customers on the Salesforce platform. Dashboard Relay extends that same pattern to the broader automation ecosystem: Zapier, Make, Power Automate, n8n, MuleSoft, or any endpoint that accepts an HTTP POST.
 
 The result is that any Tableau customer, regardless of their automation stack, can turn a dashboard into a trigger for operational workflows. The dashboard stops being a place to observe data and becomes a place to act on it — without leaving Tableau.
 
@@ -37,13 +37,13 @@ No backend required for basic use. The extension runs entirely in the browser an
 
 **1. Download the manifest**
 
-Download [`manifest.trex`](https://bhartsf.github.io/tableau-webook-bridge/manifest.trex) — this is the only file you need locally.
+Download [`manifest.trex`](https://bhartsf.github.io/tableau-extension-dashboard-relay/manifest.trex) — this is the only file you need locally.
 
 **2. Allowlist on Tableau Cloud**
 
 In Tableau Cloud: **Settings → Extensions → Add Extension by URL**
 
-Paste: `https://bhartsf.github.io/tableau-webook-bridge/index.html`
+Paste: `https://bhartsf.github.io/tableau-extension-dashboard-relay/index.html`
 
 Enable **Allow to run with network access**.
 
@@ -56,7 +56,7 @@ In a dashboard (edit mode), drag an **Extension** object onto the canvas. Select
 Click the **Configure** button that appears in the extension zone (only visible in edit mode). Set:
 - **Worksheet** — the worksheet whose selected marks will be sent
 - **Webhook URL** — your Zapier/Make/Power Automate/n8n/MuleSoft endpoint (or leave blank if using a proxy)
-- **Proxy URL** *(optional)* — URL of your Webhook Bridge proxy instance; see [Proxy](#proxy) below
+- **Proxy URL** *(optional)* — URL of your Dashboard Relay proxy instance; see [Proxy](#proxy) below
 - **Config ID** *(optional)* — identifier used by the proxy to look up the real destination
 - **Button label** — what the button says to dashboard viewers
 - **Agent instructions** *(optional)* — natural language description of what an AI agent should do with the data; included in the payload as `instructions`
