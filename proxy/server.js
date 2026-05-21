@@ -2,7 +2,7 @@ const express = require('express');
 const crypto = require('crypto');
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ verify: (req, res, buf) => { req.rawBody = buf; } }));
 
 // CORS — allow requests from any Tableau extension origin
 app.use((req, res, next) => {
@@ -47,7 +47,7 @@ app.post('/trigger', async (req, res) => {
     return res.status(404).json({ error: `Unknown config_id: ${config_id}` });
   }
 
-  const body = JSON.stringify(req.body);
+  const body = req.rawBody;
   const signature = sign(route.secret, body);
 
   try {
