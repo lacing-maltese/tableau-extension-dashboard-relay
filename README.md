@@ -118,7 +118,7 @@ Configuration is persisted in `tableau.extensions.settings` and travels with the
 
 ## Self-hosting the extension
 
-The shared instance at `bhartsf.github.io` is suitable for testing and internal use. To host your own:
+The shared instance at `lacing-maltese.github.io` is suitable for testing and internal use. To host your own:
 
 1. Fork this repo
 2. Enable GitHub Pages on your fork (Settings → Pages → Deploy from branch → main)
