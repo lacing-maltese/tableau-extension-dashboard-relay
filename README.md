@@ -86,16 +86,25 @@ For production use, deploy the included proxy service instead of posting directl
 - Returns a real HTTP response status (unlike `no-cors` direct mode)
 - Eliminates CORS issues for platforms like MuleSoft that require server-to-server calls
 
-**Deploy to Railway (or any Node host):**
+**Requirements:** Node.js 18+, two environment variables:
 
-1. Fork this repo
-2. Create a new Railway project from your fork, using `proxy/` as the service root
-3. Set the `ROUTES` environment variable — a JSON object mapping config IDs to destinations:
-   ```
-   {"my-config-id":{"destination":"https://hooks.zapier.com/hooks/catch/...","secret":"your-hmac-secret"}}
-   ```
-4. Set `PORT` to match Railway's public networking port
-5. Configure the extension with your Railway URL as the **Proxy URL** and your config ID
+- `ROUTES` — JSON object mapping config IDs to destinations:
+  ```
+  {"my-config-id":{"destination":"https://hooks.zapier.com/hooks/catch/...","secret":"your-hmac-secret"}}
+  ```
+- `PORT` — the port to listen on (most platforms set this automatically)
+
+The repo includes a `Procfile` (`web: node proxy/server.js`) that most platforms recognize automatically.
+
+**Quick deploy options (all have free tiers):**
+
+| Platform | Steps |
+|---|---|
+| **Heroku** | `heroku create`, set env vars with `heroku config:set`, `git push heroku main` |
+| **Railway** | New project → Deploy from GitHub repo, set env vars in the dashboard |
+| **Render** | New Web Service → connect repo, set env vars, deploy |
+
+After deploying, configure the extension with your hosted URL as the **Proxy URL** and your config ID.
 
 The proxy exposes a `/health` endpoint for uptime checks.
 
