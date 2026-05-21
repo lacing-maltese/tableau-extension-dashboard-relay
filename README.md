@@ -16,7 +16,7 @@ Dashboard authors configure a webhook URL, field mappings, and an optional butto
   "instructions": "Research each customer's recent activity and draft a personalized outreach email.",
   "meta": {
     "worksheet": "Sales by Region",
-    "triggered_by": "ben.hart",
+    "triggered_by": "unknown",
     "config_id": "sales-outreach",
     "timestamp": "2026-05-14T17:02:55.664Z"
   }
@@ -37,13 +37,13 @@ No backend required for basic use. The extension runs entirely in the browser an
 
 **1. Download the manifest**
 
-Download [`manifest.trex`](https://bhartsf.github.io/tableau-extension-dashboard-relay/manifest.trex) — this is the only file you need locally.
+Download [`manifest.trex`](https://lacing-maltese.github.io/tableau-extension-dashboard-relay/manifest.trex) — this is the only file you need locally.
 
 **2. Allowlist on Tableau Cloud**
 
 In Tableau Cloud: **Settings → Extensions → Add Extension by URL**
 
-Paste: `https://bhartsf.github.io/tableau-extension-dashboard-relay/index.html`
+Paste: `https://lacing-maltese.github.io/tableau-extension-dashboard-relay/index.html`
 
 Enable **Allow to run with network access**.
 
